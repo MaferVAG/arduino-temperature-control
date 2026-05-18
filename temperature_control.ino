@@ -18,14 +18,7 @@
  *   - External 12V/12A heating (Nichrome wire) + cooling (fan) circuit
  */
 
-#if __has_include(<LiquidCrystal_I2C.h>)
 #include <LiquidCrystal_I2C.h>
-#define LCD_I2C_AVAILABLE
-#elif __has_include(<LiquidCrystal.h>)
-#include <LiquidCrystal.h>
-#else
-#error "LiquidCrystal_I2C.h or LiquidCrystal.h library required"
-#endif
 #include <Wire.h>
 
 // ── Constants ──────────────────────────────────────────────
@@ -39,11 +32,7 @@ const float ADC_RESOLUTION   = 1023.0;
 const float LM35_MV_PER_DEG  = 10.0;  // LM35 outputs 10mV per °C
 
 // ── LCD Setup ──────────────────────────────────────────────
-#ifdef LCD_I2C_AVAILABLE
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-#else
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-#endif
 
 // ── Function Declarations ──────────────────────────────────
 float readAverageTemperature();
